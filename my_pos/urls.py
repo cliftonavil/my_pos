@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
+
+admin.site.site_header = "POS Admin"
+admin.site.index_title = "Welcome to POS"
+admin.site.site_title = "POS Billing"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', TokenObtainPairView.as_view(), name='user-login'),
+    path('login/refresh/', TokenRefreshView.as_view(), name='user-login_refresh'),
 ]

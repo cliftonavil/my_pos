@@ -124,7 +124,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
+# Below Custom Code
+AUTH_USER_MODEL = 'users.PosUser'
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -187,4 +188,13 @@ LOGGING = {
             "level": "INFO"
         }
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 }
